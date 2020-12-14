@@ -1,0 +1,59 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary" >
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Crear Objetos
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  
+  <form [formGroup]="todoForm" (ngSubmit)="storeData()">
+
+    <ion-item >
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input formControlName="Nombre"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Tipo</ion-label>
+      <ion-select formControlName="Tipo" value="Warframe" okText="Aceptar" cancelText="Cancelar">
+        <ion-select-option value="Warframes">Warframe</ion-select-option>
+        <ion-select-option value="Primary">Primaria</ion-select-option>
+        <ion-select-option value="Secundary">Secundaria</ion-select-option>
+        <ion-select-option value="Melee">Melee</ion-select-option>
+        <ion-select-option value="Arch">Arch</ion-select-option>
+        <ion-select-option value="Sentinels">Sentinela</ion-select-option>
+        <ion-select-option value="Pets">Compañeros</ion-select-option>
+        <ion-select-option value="Arcanes">Arcano</ion-select-option>
+        <ion-select-option value="Mods">Mods</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item >
+      <ion-label position="floating">Componentes</ion-label>
+      <ion-input formControlName="Componentes"></ion-input>
+    </ion-item>
+
+    <ion-item >
+      <ion-label position="floating">Farmeo</ion-label>
+      <ion-textarea formControlName="Farmeo"></ion-textarea>
+    </ion-item>
+
+    <ion-item >
+      <ion-label position="floating">Otros</ion-label>
+      <ion-textarea formControlName="Otros"></ion-textarea>
+    </ion-item>
+
+    <br>
+
+    <ion-button expand="block" (click)="alerta()" [disabled]="todoForm.invalid">
+      <ion-icon  slot="icon-only" name="add"></ion-icon>
+      &nbsp;Agregar
+    </ion-button>
+
+  </form>
+</ion-content>

@@ -1,0 +1,30 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Buscador de Items</ion-title>
+  </ion-toolbar>
+  <ion-searchbar color="light" animated (ionChange)="onSearchChange($event)" debounce="400"></ion-searchbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item button *ngFor="let item of details" [routerLink]="item.name">
+      <ion-avatar slot="start" *ngIf="item.wikiaThumbnail; else elseBlock ">
+        <img [src]="item.wikiaThumbnail | img " style="background: #F2F2F2;">
+      </ion-avatar>
+      <ng-template #elseBlock>
+        <ion-avatar slot="start" #elseBlock>
+          <img src="../../../assets/img/noImage.jpg" style="background: #F2F2F2;">
+        </ion-avatar>
+      </ng-template>
+
+      <ion-label>
+        <h2>{{ item.name }}</h2>
+        <h3>{{ item.category }}</h3>
+      </ion-label>
+      
+    </ion-item>
+  </ion-list>
+</ion-content>

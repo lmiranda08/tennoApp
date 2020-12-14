@@ -1,0 +1,111 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="actualizar()">
+          <ion-icon slot="icon-only" name="refresh-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+
+    <ion-title>Arcanos Pendientes</ion-title>
+
+  </ion-toolbar>
+
+  <ion-searchbar color="light" animated (ionChange)="buscador($event)" ></ion-searchbar>
+
+  
+
+</ion-header>
+
+<ion-content class="ion-padding" >
+  
+  <ion-card class="colorCard">
+    <ion-card-header>
+      <ion-card-subtitle>Arcanos:  <strong>{{ resultadoArcane }} </strong> </ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-card *ngFor="let item of Data | filtro: textoBuscar: 'Nombre'; let index = index" color="light">
+    <span *ngIf="!item.isEdit; else elseBlock">
+      <ion-card-header>
+        <ion-card-title> {{item.Nombre}} </ion-card-title>
+        <ion-card-subtitle>Tipo: {{item.Tipo}}</ion-card-subtitle>
+        <ion-card-subtitle>Componentes: {{item.Componentes}}</ion-card-subtitle>
+        <ion-card-subtitle>Farmeo: {{item.Farmeo}}</ion-card-subtitle>
+        <ion-card-subtitle>Otros: {{item.Otros}}</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+
+        <ion-button shape="round" color="secondary" size="small" (click)="EditRecord(item)">
+          <ion-icon size="small" slot="icon-only" name="create"></ion-icon>
+        </ion-button>
+        <ion-button shape="round" color="danger" size="small" (click)="deletePendiente(item.id)">
+          <ion-icon size="small" slot="icon-only" name="trash"></ion-icon>
+        </ion-button>
+
+      </ion-card-content>
+    </span>
+    <ng-template #elseBlock>
+      <ion-card-header>
+        <ion-card-title>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                Editar
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-button fill="solid" color="medium" size="small" (click)="item.isEdit = false">
+                  Cerrar
+                </ion-button>
+              </ion-col>
+              <ion-col>
+                <ion-button fill="solid" color="success" size="small" (click)="updatePendiente(item)">
+                  Editar
+                </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item color="light">
+          <ion-label><strong>Nombre</strong></ion-label>
+          <ion-input type="text" [(ngModel)]="item.EditNombre"></ion-input>
+        </ion-item>
+        <ion-item color="light">
+          <ion-label><strong>Tipo</strong></ion-label>
+          <ion-select type="text" [(ngModel)]="item.EditTipo" okText="Aceptar" cancelText="Cancelar">
+            <ion-select-option value="Warframes">Warframe</ion-select-option>
+            <ion-select-option value="Primary">Primaria</ion-select-option>
+            <ion-select-option value="Secundary">Secundaria</ion-select-option>
+            <ion-select-option value="Melee">Melee</ion-select-option>
+            <ion-select-option value="Arch">Arch</ion-select-option>
+            <ion-select-option value="Sentinels">Sentinela</ion-select-option>
+            <ion-select-option value="Pets">Compañeros</ion-select-option>
+            <ion-select-option value="Arcanes">Arcano</ion-select-option>
+            <ion-select-option value="Mods">Mods</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item color="light">
+          <ion-label><strong>Componentes</strong></ion-label>
+          <ion-input type="text" [(ngModel)]="item.EditComponentes"></ion-input>
+        </ion-item>
+        <ion-item color="light">
+          <ion-label><strong>Farmeo</strong></ion-label>
+          <ion-textarea type="text" [(ngModel)]="item.EditFarmeo"></ion-textarea>
+        </ion-item>
+        <ion-item color="light">
+          <ion-label><strong>Otros</strong></ion-label>
+          <ion-textarea type="text" [(ngModel)]="item.EditOtros"></ion-textarea>
+        </ion-item>
+      </ion-card-content>
+    </ng-template>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+<!--     <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/search-weapon"></ion-back-button>
+    </ion-buttons> -->
+    <ion-title class="ion-text-capitalize">{{ details?.name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+ 
+
+<ion-content>
+
+  <form [formGroup]="todoForm" (ngSubmit)="storeData()">
+    <div *ngIf="details">
+      <ion-card>
+        <ion-card-header>
+          <img [src]="details.wikiaThumbnail | img " style="background: #F2F2F2;" *ngIf="details.wikiaThumbnail; else elseBlock ">
+          <ng-template #elseBlock>
+              <img src="../../../assets/img/noImage.jpg" style="background: #F2F2F2;">
+          </ng-template>
+          <ion-input formControlName="Nombre" class="ion-text-capitalize titulo" [(ngModel)]="details.name" ></ion-input>
+          <ion-card-subtitle class="ion-text-capitalize titulo">{{ details.description }}</ion-card-subtitle>
+          <br>
+          <ion-input class="ion-hide" formControlName="Tipo" [(ngModel)]="tipoWarframe"></ion-input>
+          <ion-input class="ion-hide" formControlName="Componentes" (ngModel)="0"></ion-input>
+          <ion-input class="ion-hide" formControlName="Farmeo" (ngModel)="0"></ion-input>
+          <ion-input class="ion-hide" formControlName="Otros" (ngModel)="0"></ion-input>
+          <ion-button size="small" color="success" expand="block" (click)="alerta()">Agregar</ion-button>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-card class="colorCard" *ngIf="details.components">
+            <ion-card-header>
+              <ion-card-title>
+                Componentes
+              </ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-list lines="full">
+                <ion-item button *ngFor="let s of details.components; let index = index" class="ion-text-capitalize">
+                  <ion-label class="drops" slot="start"> {{ s.name }}: </ion-label>
+                  <ion-label class="drops" slot="end"> {{ s.itemCount }} </ion-label>
+                </ion-item>
+              </ion-list>
+            </ion-card-content>
+          </ion-card>
+          <div *ngIf="drops">
+            <ion-card class="colorCard" *ngIf="drops.length > 1">
+              <ion-card-header>
+                <ion-card-title>
+                  Drops
+                </ion-card-title>
+              </ion-card-header>
+              <ion-card-content>
+                <ion-list *ngFor="let d of drops; let index = index" class="ion-text-capitalize" lines="none">
+                  <div class="borde">
+                    <ion-item>
+                      <ion-label> {{ d.item }}: </ion-label>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label> {{ d.place }} </ion-label>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label> {{ d.chance }} </ion-label>
+                    </ion-item>
+                  </div>
+                </ion-list>
+              </ion-card-content>
+            </ion-card>
+          </div>
+        </ion-card-content>
+  
+      </ion-card>
+    </div>
+  </form>
+  
+</ion-content>

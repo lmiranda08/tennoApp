@@ -1,0 +1,56 @@
+<ion-menu contentId="content">
+  <ion-header [translucent]="true">
+    <ion-toolbar color="primary">
+      <ion-item color="primary" lines="none">
+        <ion-avatar slot="start">
+            <img src="../../../assets/img/lm.png">
+        </ion-avatar> 
+        <ion-label class="tituloPaginas">Menú</ion-label>
+      </ion-item>
+<!--       <ion-item lines="none">
+        <ion-avatar slot="start">
+          <img [src]="image">
+        </ion-avatar>
+        <ion-label>
+          <h2 style="font-weight: bold;" > {{ nombre }} </h2>
+        </ion-label>
+      </ion-item>
+ -->
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <ion-menu-toggle auto-hide="false" *ngFor="let item of direcciones">
+        <ion-item class="opciones" [routerLink]="item.url" routerDirection="root" routerLinkActive="active" lines="full">
+          <ion-icon slot="start" [name]="item.icon" [src]="item.src"></ion-icon>
+            {{ item.title }}
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-list>
+  </ion-content>
+    <ion-footer>
+      <ion-list>
+        <ion-menu-toggle auto-hide="false" *ngFor="let item of profile">
+
+          <ion-item class="opciones" [routerLink]="item.url" routerDirection="root" routerLinkActive="active" lines="full">
+            <ion-icon slot="start" [name]="item.icon" [src]=""></ion-icon>
+              {{ item.title }}
+              <ion-buttons slot="end">
+                <ion-button (click)="signOut()">
+                  <ion-icon slot="icon-only" name="exit-outline"></ion-icon>
+                </ion-button>
+              </ion-buttons>
+          </ion-item>
+
+          <ion-item class="opciones2" lines="full">
+            <div class="item-content">
+              Desarrollado por Luis Miranda
+            </div>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-footer>
+</ion-menu>
+
+<ion-router-outlet id="content" main></ion-router-outlet>

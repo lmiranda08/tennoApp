@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+<!--     <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/search-weapon"></ion-back-button>
+    </ion-buttons> -->
+    <ion-title class="ion-text-capitalize">{{ details?.name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+ 
+
+<ion-content>
+
+  <form [formGroup]="todoForm" (ngSubmit)="storeData()">
+    <div *ngIf="details">
+      <ion-card>
+        <ion-card-header>
+          <img [src]="details.thumbnail | img " style="background: #F2F2F2;" *ngIf="details.thumbnail; else elseBlock ">
+          <ng-template #elseBlock>
+              <img src="../../../assets/img/noImage.jpg" style="background: #F2F2F2;">
+          </ng-template>
+          <ion-input formControlName="Nombre" class="ion-text-capitalize titulo" [(ngModel)]="details.name" ></ion-input>
+          <ion-card-subtitle class="ion-text-capitalize titulo">Descripción: {{ details.effect }}</ion-card-subtitle>
+          <ion-card-subtitle class="ion-text-capitalize titulo">Farmeo: {{ details.location }}</ion-card-subtitle>
+          <ion-card-subtitle class="ion-text-capitalize titulo">Rareza: {{ details.rarity }}</ion-card-subtitle>
+          <br>
+          <ion-input class="ion-hide" formControlName="Tipo" [(ngModel)]="tipoArcane"></ion-input>
+          <ion-input class="ion-hide" formControlName="Componentes" (ngModel)="0"></ion-input>
+          <ion-input class="ion-hide" formControlName="Farmeo" (ngModel)="0"></ion-input>
+          <ion-input class="ion-hide" formControlName="Otros" (ngModel)="0"></ion-input>
+          <ion-button size="small" color="success" expand="block" (click)="alerta()">Agregar</ion-button>
+        </ion-card-header>
+        <ion-card-content>
+<!--           <ion-card>
+            <ion-card-header>
+              <ion-card-title>
+                Componentes
+              </ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-list lines="full">
+                <ion-item button *ngFor="let s of details.components; let index = index" class="ion-text-capitalize">
+                  <ion-label class="drops" slot="start"> {{ s.name }}: </ion-label>
+                  <ion-label class="drops" slot="end"> {{ s.itemCount }} </ion-label>
+                </ion-item>
+              </ion-list>
+            </ion-card-content>
+          </ion-card> -->
+        </ion-card-content>
+  
+      </ion-card>
+    </div>
+  </form>
+  
+</ion-content>

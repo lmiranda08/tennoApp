@@ -1,0 +1,41 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Mercado</ion-title>
+  </ion-toolbar>
+  <ion-searchbar color="light" animated (ionChange)="filterItems($event)" debounce="400"></ion-searchbar>
+</ion-header>
+
+<ion-content>
+
+  <form [formGroup]="todoForm" (ngSubmit)="storeData()">
+      <ion-list>
+        <ion-item button *ngFor="let item of items | slice:0:slice">
+          <ion-row>
+            <ion-col class="ion-align-self-start">
+              <ion-input formControlName="Nombre"> {{ item.Name }} </ion-input>
+            </ion-col>
+            <ion-col class="ion-align-self-center">
+              <strong>
+                <ion-input formControlName="Precio"> {{item.Platinum}} pl</ion-input>
+              </strong>
+            </ion-col>
+            <ion-col class="ion-align-self-end">
+              <ion-button expand="full" (click)="alerta()">
+                <ion-icon slot="icon-only" name="add"></ion-icon>
+            </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+      </ion-list>
+  
+    <ion-infinite-scroll (ionInfinite)="load(true, $event)">
+      <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando más items...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+</form>
+
+</ion-content>

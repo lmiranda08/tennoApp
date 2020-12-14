@@ -1,0 +1,54 @@
+
+<ion-content class="ion-padding prueba">
+  <div class="login-logo">
+    <img src="../../../assets/img/LMSoftwareIcono.png" alt="logo">
+  </div>
+
+  <hr>
+  
+  <form #loginForm="ngForm" novalidate >
+    <ion-list>
+      <ion-item class="closed" class="borderForm">
+        <ion-label position="stacked" color="primary">Correo</ion-label>
+        <ion-input name="username" type="text"  spellcheck="false" autocapitalize="off" aria-autocomplete="#loginForm" [(ngModel)]="user.email" value="luismiranda@icollect.cr" required></ion-input>
+      </ion-item>
+
+      <ion-text color="danger">
+        <p class="ion-padding-start">
+          
+        </p>
+      </ion-text>
+
+      <ion-item class="closed" class="borderForm">
+        <ion-label position="stacked" color="primary">Contraseña</ion-label>
+        <ion-input name="password" type="password"  [(ngModel)]="user.password" required>
+        </ion-input>
+      </ion-item>
+
+      <ion-text color="danger">
+        <p class="ion-padding-start">
+        </p>
+      </ion-text>
+    </ion-list>
+
+    <ion-row>
+      <ion-col>
+        <ion-button color="primary" type="submit" (click)="login()" expand="block">Login</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button color="primary" type="submit" (click)="resetearPass(user.email)" expand="block">Olvidó la contraseña</ion-button>
+      </ion-col>
+    </ion-row>
+    <br>
+    <br>
+    <ion-row>
+      <ion-col>
+        <ion-button color="primary" type="submit" expand="block" routerLink="/register">Registrarse</ion-button>
+      </ion-col>
+    </ion-row>
+
+  </form>
+
+</ion-content>

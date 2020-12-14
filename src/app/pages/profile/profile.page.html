@@ -1,0 +1,53 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-item color="primary" lines="none">
+<!--       <ion-avatar slot="start">
+        <img src="../../../assets/img/LMSoftwareIconoBlanco.png">
+      </ion-avatar>  -->
+      <ion-title>Perfil</ion-title>
+    </ion-item>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="signOut()">
+        <ion-icon slot="icon-only" name="exit-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content fullscreen="true" slot="fixed">
+  <br>
+    <ion-avatar class="avat" >
+<!--     <ion-avatar class="avat" (click)="updatePhoto()"> -->
+      <img [src]="photo" alt="Profile Picture">
+    </ion-avatar>
+  <br>
+
+  <br>
+
+  <div>
+    <ion-card class="transparente">
+      <ion-list>
+        <ion-item-divider>
+          <ion-icon slot="start" name="game-controller-outline"></ion-icon>
+          <ion-label > {{ nombre }} </ion-label>
+        </ion-item-divider>
+        <ion-item-divider>
+          <ion-icon slot="start" name="mail-open-outline"></ion-icon>
+          <ion-label > {{ email }} </ion-label>
+        </ion-item-divider>
+        <ion-item-divider >
+          <ion-icon slot="start" name="mail-outline"></ion-icon>
+          <ion-button color="success" type="submit" fill="outline" (click)="resetearPass(email)" >Cambiar contraseña</ion-button>
+        </ion-item-divider>
+      </ion-list>
+    </ion-card>
+  </div>
+
+</ion-content>

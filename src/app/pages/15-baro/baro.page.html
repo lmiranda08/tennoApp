@@ -1,0 +1,61 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <br>
+    <ion-title>Baro Ki'Teer</ion-title>
+    <br>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="getData()">
+          <ion-icon slot="icon-only" name="refresh-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+
+   <!-- Baro -->
+   <ion-card>
+    <img src="../../../assets/img/baro.png"/>
+    <ion-card-content>
+      <ion-card-title>
+        {{ baro['character'] }}
+      </ion-card-title>
+      <ion-card-subtitle>
+        <strong> {{ baro['location'] }} </strong> 
+      </ion-card-subtitle>
+      <ion-card-subtitle>
+          Disponible: {{ baro['active'] }}
+      </ion-card-subtitle>
+      <p>
+        Inicio: {{ baro['startString']}}
+      </p>
+      <p>
+        Termina: {{ baro['expiry'] | date:'short'}}
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-card class="colorCard" *ngIf="baro['inventory']">
+    <ion-card-header>
+      <ion-card-title>
+        Inventario
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list lines="full">
+        <ion-item button *ngFor="let s of baro['inventory']; let index = index" class="ion-text-capitalize">
+          <ion-label class="drops" slot="start"> {{ s.name }}: </ion-label>
+<!--           <ion-label class="drops" slot="end"> {{ s.itemCount }} </ion-label> -->
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

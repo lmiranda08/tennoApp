@@ -1,0 +1,57 @@
+.titulo{
+    font-weight:bold; 
+    font-size: 47px;
+    text-align: center
+  }
+  
+  .subtitulo{
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .intro{
+    text-align: justify;
+    font-size: 20px;
+    font-style: italic;
+  }
+  
+  .pad{
+    padding-bottom: 14px;
+  }
+  
+  
+  .login-logo {
+    padding: 20px 0;
+    min-height: 200px;
+    text-align: center
+  }
+  
+  .login-logo img {
+    max-width: 130px;
+    border-radius:100px;
+  //  border:3px solid black;
+  }
+  
+  .list {
+    margin-bottom: 0;
+  }
+  
+  
+  .closed {
+    color:#666;
+    --highlight-background: transparent;
+  }
+  
+  .borderForm{
+    border-radius: 15px;
+  }
+  
+  .prueba{
+  --background: url("../../../assets/img/login3.jpg") 0 0/100% 100% no-repeat;
+  }
+
+  
+  

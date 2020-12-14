@@ -1,0 +1,126 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <br>
+    <ion-title>Inicio</ion-title>
+    <br>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="actualizar()">
+          <ion-icon slot="icon-only" name="refresh-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content>
+  <!-- Cetus -->
+  <ion-card>
+    <img src="../../../assets/img/cetus.png"/>
+    <ion-card-content>
+      <ion-card-title>
+        CETUS     
+        <ion-chip>
+          <ion-label outline color="success"> {{ cetus['state'] | uppercase }}</ion-label>
+        </ion-chip>
+      </ion-card-title>
+      <p>
+        {{ cetus['shortString'] }}
+      </p>
+      <p>
+        {{ cetus['expiry'] | date:'short'}}
+      </p>
+    </ion-card-content>
+  </ion-card>
+  <!-- Fortuna -->
+  <ion-card>
+    <img src="../../../assets/img/fortuna.png"/>
+    <ion-card-content>
+      <ion-card-title>
+        FORTUNA
+        <ion-chip>
+          <ion-label outline color="success">   {{ fortuna['state'] | uppercase }}</ion-label>
+        </ion-chip>
+      </ion-card-title>
+      <p>
+        {{ fortuna['shortString'] }}
+      </p>
+      <p>
+        {{ fortuna['expiry'] | date:'short'}}
+      </p>
+    </ion-card-content>
+  </ion-card>
+  <!-- Deimos -->
+  <ion-card>
+    <img src="../../../assets/img/deimos.jpg"/>
+    <ion-card-content>
+      <ion-card-title>
+        DEIMOS
+        <ion-chip>
+          <ion-label outline color="success"> {{ deimos['active'] | uppercase }}</ion-label>
+        </ion-chip>
+      </ion-card-title>
+      <p>
+        {{ deimos['expiry'] | date:'short'}}
+      </p>
+    </ion-card-content>
+  </ion-card>
+   <!-- Tierra -->
+   <ion-card>
+    <img src="../../../assets/img/earth.png"/>
+    <ion-card-content>
+      <ion-card-title>
+        TIERRA     
+        <ion-chip>
+          <ion-label outline color="success"> {{ tierra['state'] | uppercase }}</ion-label>
+        </ion-chip>
+      </ion-card-title>
+      <p>
+        {{ tierra['timeLeft'] }}
+      </p>
+      <p>
+        {{ tierra['expiry'] | date:'short'}}
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Espacios -->
+  <br>
+  <ion-card color="primary">
+    <ion-card-content>
+    </ion-card-content>
+  </ion-card>
+  <br>
+  <!-- Fisuras -->
+  <ion-card *ngFor="let item of fisura" >
+    <ion-card-content>
+      <ion-card-title>
+        {{ item.tier }} - {{ item.missionType }}
+      </ion-card-title>
+      <ion-card-subtitle>
+        {{ item.node }}
+      </ion-card-subtitle>
+      <p>
+        Restante: {{ item.eta }}
+      </p>
+      <p>
+        Expira: {{ item.expiry | date:'short' }}
+      </p>
+    </ion-card-content>
+  </ion-card>
+  <!-- Espacios -->
+  <br>
+  <ion-card color="primary">
+    <ion-card-content>
+    </ion-card-content>
+  </ion-card>
+  <br>
+
+
+
+</ion-content>
