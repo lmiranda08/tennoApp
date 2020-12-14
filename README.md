@@ -1,2 +1,0 @@
-# tennoApp
-Personal Warframe App

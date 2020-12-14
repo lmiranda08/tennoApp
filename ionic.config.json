@@ -1,8 +1,0 @@
-{
-  "name": "WarframeApp",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular",
-  "id": "be30b55c"
-}
