@@ -1,4 +1,4 @@
-# tennoApp
+# Tenno App
 
 Aplicación de control del Warframe.
 
