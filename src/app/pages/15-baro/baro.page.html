@@ -29,32 +29,41 @@
       <ion-card-subtitle>
         <strong> {{ baro['location'] }} </strong> 
       </ion-card-subtitle>
-      <ion-card-subtitle>
-          Disponible: {{ baro['active'] }}
+      <ion-card-subtitle *ngIf="baro['active'] == true">
+        Disponible: SÍ
       </ion-card-subtitle>
-      <p>
+      <ion-card-subtitle *ngIf="baro['active'] == false">
+        Disponible: NO
+      </ion-card-subtitle>
+      <p *ngIf="baro['active'] == false">
         Inicio: {{ baro['startString']}}
+      </p>
+      <p>
+        Fin: {{ baro['endString']}}
       </p>
       <p>
         Termina: {{ baro['expiry'] | date:'short'}}
       </p>
     </ion-card-content>
   </ion-card>
-
-
-  <ion-card class="colorCard" *ngIf="baro['inventory']">
+  <ion-card class="colorCard" *ngIf="baro['active'] == true">
     <ion-card-header>
       <ion-card-title>
         Inventario
       </ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-list lines="full">
-        <ion-item button *ngFor="let s of baro['inventory']; let index = index" class="ion-text-capitalize">
-          <ion-label class="drops" slot="start"> {{ s.name }}: </ion-label>
-<!--           <ion-label class="drops" slot="end"> {{ s.itemCount }} </ion-label> -->
-        </ion-item>
-      </ion-list>
+      <ion-card button *ngFor="let s of baro['inventory']; let index = index" class="ion-text-capitalize">
+        <ion-card-header>
+          <ion-card-subtitle>
+            <ion-label class="drops"> {{ s.item }} </ion-label>
+          </ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-label class="drops">Ducados: {{ s.ducats | number}} </ion-label>
+          <ion-label class="drops">Créditos: {{ s.credits | number }} </ion-label>
+        </ion-card-content>
+      </ion-card>
     </ion-card-content>
   </ion-card>
 

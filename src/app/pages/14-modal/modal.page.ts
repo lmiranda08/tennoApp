@@ -32,9 +32,7 @@ export class ModalPage implements OnInit {
       Nombre: [''],
       Precio: ['']
     });
-  }
-
-  
+  }  
 
   filterItems(event) {
     const val = event.target.value;
