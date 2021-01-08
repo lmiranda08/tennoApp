@@ -14,14 +14,19 @@ Demás información relevante para Jugar.
 
 ## Comenzando 🚀
 
- 
 Únicamente debe de agregar en el environment y environment.prod el acceso de Firebase.
 Despues ionic -serve
 En cuanto a agregar items a pendientes y ventas, se debe de realizar en dispositivos reales, ya que SQLite no corre en WEB.
 
 ### Pre-requisitos 📋
 
-Ionic CLI - Angular Fire - Angular Firestore - Angular FireAuth - SQLite - SQLitePorter
+Ionic CLI
+
+Angular FireAuth 
+
+SQLite 
+
+SQLitePorter
 
 
 ### Instalación 🔧
