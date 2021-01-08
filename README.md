@@ -76,7 +76,6 @@ Api: https://api.warframestat.us
 
 Luis Miranda
 
-## Licencia 📄
 
 
 
