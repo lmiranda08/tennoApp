@@ -10,7 +10,6 @@ Demás información relevante para Jugar.
 
 ## Comenzando 🚀
 
-_Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
  
 Únicamente debe de agregar en el environment y environment.prod el acceso de Firebase.
 Despues ionic -serve
@@ -18,12 +17,7 @@ En cuanto a agregar items a pendientes y ventas, se debe de realizar en disposit
 
 ### Pre-requisitos 📋
 
-Ionic CLI
-Angular Fire
-Angular Firestore
-Angular FireAuth
-SQLite
-SQLitePorter
+Ionic CLI - Angular Fire - Angular Firestore - Angular FireAuth - SQLite - SQLitePorter
 
 
 ### Instalación 🔧
