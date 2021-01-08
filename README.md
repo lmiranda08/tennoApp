@@ -1,6 +1,6 @@
 # Tenno App
 
-Aplicación de control del Warframe.
+Aplicación de control del juego Warframe.
 
 Mantiene los items pendientes por subir de maestría.
 
