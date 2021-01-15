@@ -25,7 +25,7 @@ export class SearchAddArcanePage implements OnInit {
   ngOnInit(){
     this.db.dbState().subscribe((res) => {
       if (res){
-        this.db.fetchPendientesArcanos().subscribe(item => {
+        this.db.fetchArcanes().subscribe(item => {
           this.data = item;
         });
         this.getQArcane();
@@ -37,7 +37,7 @@ export class SearchAddArcanePage implements OnInit {
   update(){
     this.db.dbState().subscribe((res) => {
       if (res){
-        this.db.fetchPendientesArcanos().subscribe(item => {
+        this.db.fetchArcanes().subscribe(item => {
           this.data = item;
         });
         this.getQArcane();
@@ -46,7 +46,7 @@ export class SearchAddArcanePage implements OnInit {
   }
 
   getQArcane(){
-    this.db.getArcanes().then( res => {
+    this.db.getQArcane().then( res => {
       this.resultAllArcane = res.rows.item(0).TotalArcane;
     });
   }

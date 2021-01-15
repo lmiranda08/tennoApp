@@ -11,8 +11,8 @@
 <ion-content>
   <ion-list>
     <ion-item button *ngFor="let item of details" [routerLink]="item.name">
-      <ion-avatar slot="start" *ngIf="item.wikiaThumbnail; else elseBlock ">
-        <img [src]="item.wikiaThumbnail | img " style="background: #F2F2F2;">
+      <ion-avatar slot="start" *ngIf="item.img; else elseBlock ">
+        <img [src]="item.img | img " style="background: #F2F2F2;">
       </ion-avatar>
       <ng-template #elseBlock>
         <ion-avatar slot="start" #elseBlock>

@@ -1,17 +1,16 @@
-CREATE TABLE IF NOT EXISTS Pendientes(
+CREATE TABLE IF NOT EXISTS Items(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    Nombre TEXT, 
-    Tipo TEXT,
-    Componentes TEXT,
-    Farmeo text,
-    Otros text
+    name TEXT, 
+    category TEXT,
+    component TEXT,
+    farming text,
+    extra text
 );
 
-CREATE TABLE IF NOT EXISTS Ventas(
+CREATE TABLE IF NOT EXISTS Sales(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    Nombre TEXT, 
-    Precio TEXT,
-    Favorito INTEGER
+    name TEXT, 
+    balance TEXT
 );
 /* 
 INSERT or IGNORE INTO Pendientes(id, nombre, tipo, componentes, farmeo, otros, fecha) VALUES (1, 'Prueba1', 'Prueba1', 'Prueba1', 'Prueba1', 'Prueba1', getDate());

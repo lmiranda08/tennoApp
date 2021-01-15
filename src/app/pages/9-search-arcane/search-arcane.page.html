@@ -13,7 +13,7 @@
 <ion-content>
 
   <ion-list *ngIf="details.length == 0">
-    <ion-item button *ngFor="let item of dataArcanos;" [routerLink]="item.regex">
+    <ion-item button *ngFor="let item of dbArcanes;" [routerLink]="item.regex">
 
       <ion-avatar slot="start" *ngIf="item.thumbnail; else elseBlock ">
         <img [src]="item.thumbnail | img " style="background: #F2F2F2;">

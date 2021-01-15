@@ -13,7 +13,7 @@
 <ion-content>
   
   <ion-list *ngIf="details.length == 0">
-    <ion-item button *ngFor="let item of dataWarframes;" [routerLink]="item.name">
+    <ion-item button *ngFor="let item of dbWarframes;" [routerLink]="item.name">
 
       <ion-avatar slot="start" *ngIf="item.wikiaThumbnail; else elseBlock ">
         <img [src]="item.wikiaThumbnail | img " style="background: #F2F2F2;">

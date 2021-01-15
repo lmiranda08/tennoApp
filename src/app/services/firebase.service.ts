@@ -256,16 +256,29 @@ export class FirebaseService {
 
   searchWeapon(search) {
     return this.http.get(`${this.UrlWeaponsSearch}/${search}`).pipe(
-      map( weapon => {
-        return weapon;
-      })
+      map( (resp:any[]) => 
+        resp.map( item => ({
+          name: item.name,
+          category: item.category,
+          disposition: item.disposition,
+          wikiaThumbnail: item.wikiaThumbnail,
+          components: item.components
+          }) 
+        )
+      )
     );
   }
   searchWarframe(search) {
     return this.http.get(`${this.URLWaframesSearch}/${search}`).pipe(
-      map( warframe => {
-        return warframe;
-      })
+      map( (resp:any[]) => 
+        resp.map( item => ({
+          name: item.name,
+          description: item.description,
+          wikiaThumbnail: item.wikiaThumbnail,
+          components: item.components
+          }) 
+        )
+      )
     );
   }
   searchArcane(search) {
@@ -277,11 +290,21 @@ export class FirebaseService {
   }
 
   searchItems(search){
-    return this.http.get(`${this.URLItemSearch}/${search}`).pipe(
-      map( item => {
-        return item;
-      })
-    );
+    return this.http.get(`${this.URLItemSearch}/${search}`)
+    .pipe( 
+      map( (resp:any[]) => 
+          resp.map( item => ({name: item.name, 
+                              category: item.category, 
+                              img: item.wikiaThumbnail,
+                              description: item.description,
+                              rarity: item.rarity,
+                              tradable: item.tradable,
+                              compat: item.compatName,
+                              levelStats: item.levelStats,
+                            })
+        )
+      )
+     );
   }
   searchResources(search) {
     return this.http.get(`${this.UrlDrops}/${search}`).pipe(
@@ -313,16 +336,29 @@ export class FirebaseService {
   }
   getAllWeapons(){
     return this.http.get(this.UrlWeapons).pipe(
-      map( weapon => {
-        return weapon;
-      })
+      map( (resp:any[]) => 
+        resp.map( item => ({
+          name: item.name,
+          category: item.category,
+          disposition: item.disposition,
+          wikiaThumbnail: item.wikiaThumbnail,
+          components: item.components
+          }) 
+        )
+      )
     );
   }
   getAllWarframe(){
     return this.http.get(this.URLWaframes).pipe(
-      map( warframe => {
-        return warframe;
-      })
+      map( (resp:any[]) => 
+        resp.map( item => ({
+          name: item.name,
+          description: item.description,
+          wikiaThumbnail: item.wikiaThumbnail,
+          components: item.components
+          }) 
+        )
+      )
     );
   }
   getAllArcanes(){

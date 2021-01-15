@@ -21,9 +21,9 @@
           </ng-template>
 
           <ion-input formControlName="name" class="ion-text-capitalize titulo" [(ngModel)]="details.name" ></ion-input>
-          <ion-input class="ion-hide" formControlName="Tipo" class="ion-text-capitalize titulo" [(ngModel)]="details.category"></ion-input>
+          <ion-input class="ion-hide" formControlName="category" class="ion-text-capitalize titulo" [(ngModel)]="details.category"></ion-input>
 
-          <ion-card-subtitle class="ion-text-capitalize titulo" *ngIf="details.type">Category: {{ details.type }}</ion-card-subtitle>
+          <ion-card-subtitle class="ion-text-capitalize titulo" *ngIf="details.category">Category: {{ details.category }}</ion-card-subtitle>
           <ion-card-subtitle class="ion-text-capitalize titulo" *ngIf="details.description" >Description: {{ details.description }}</ion-card-subtitle>
           <ion-card-subtitle class="ion-text-capitalize titulo" *ngIf="details.rarity">Rarity: {{ details.rarity }}</ion-card-subtitle>
           <ion-card-subtitle class="ion-text-capitalize titulo" *ngIf="details.tradable">Transfer: {{ details.tradable }}</ion-card-subtitle>

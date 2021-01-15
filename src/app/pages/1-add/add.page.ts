@@ -39,14 +39,14 @@ export class AddPage implements OnInit {
   ngOnInit() {
     this.db.dbState().subscribe((res) => {
       if (res){
-        this.db.fetchPending().subscribe(item => {
+        this.db.fetchItems().subscribe(item => {
           this.data = item;
         });
       }
     });
     this.todoForm = this.fb.group({
-      name: ['0', [Validators.required]],
-      category: ['0', [Validators.required]],
+      name: ['', [Validators.required]],
+      category: ['', [Validators.required]],
       components: ['0'],
       farming: ['0'],
       extra: ['0'],

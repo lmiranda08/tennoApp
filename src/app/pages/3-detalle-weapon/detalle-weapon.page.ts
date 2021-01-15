@@ -39,6 +39,7 @@ export class DetalleWeaponPage implements OnInit {
     this.firebaseService.searchWeapon(index)
       .subscribe(result => {
         this.details = result[0];
+        console.log('details',this.details);
       }, err => {
       this.details = [];
     });
@@ -60,7 +61,7 @@ export class DetalleWeaponPage implements OnInit {
     });
   }
 
-  async alerta(){
+  async alert(){
     const toast = await this.toastController.create({
       message: 'Item add',
       duration: 2500

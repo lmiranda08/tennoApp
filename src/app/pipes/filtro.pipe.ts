@@ -12,12 +12,10 @@ export class FiltroPipe implements PipeTransform {
     if ( text == '' ){
       return array;
     }
-
-    text = text.toLowerCase();
-
+/*     text = text.toLowerCase(); */
     return array.filter (item => {
       return item[column].toLowerCase()
-      .includes( text );
+      .includes( text.toLowerCase() );
     });
 
   }

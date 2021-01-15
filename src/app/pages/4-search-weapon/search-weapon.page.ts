@@ -19,6 +19,7 @@ export class SearchWeaponPage implements OnInit {
       this.db.getAllWeapons()
       .subscribe( data => {
         this.dataWeapon = data;
+        console.log('data weapon',this.dataWeapon);
       });
    }, 1000);
   }

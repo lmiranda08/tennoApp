@@ -26,7 +26,7 @@ export class DetalleItemPage implements OnInit {
       name: ['', [Validators.required]],
       category: ['', [Validators.required]],
       component: ['', [Validators.required]],
-      farmimg: ['', [Validators.required]],
+      farming: ['', [Validators.required]],
       extra: ['', [Validators.required]],
     });
     let index = this.route.snapshot.paramMap.get('index');

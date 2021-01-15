@@ -14,18 +14,17 @@
     <div *ngIf="details">
       <ion-card>
         <ion-card-header>
-          
           <img [src]="details.wikiaThumbnail | img " style="background: #F2F2F2;" *ngIf="details.wikiaThumbnail; else elseBlock ">
           <ng-template #elseBlock>
               <img src="../../../assets/img/noImage.jpg" style="background: #F2F2F2;">
           </ng-template>
-          <ion-input formControlName="Nombre" class="ion-text-capitalize titulo" [(ngModel)]="details.name" ></ion-input>
-          <ion-input formControlName="Tipo" class="ion-text-capitalize titulo" [(ngModel)]="details.category" ></ion-input>
+          <ion-input formControlName="name" class="ion-text-capitalize titulo" [(ngModel)]="details.name" ></ion-input>
+          <ion-input formControlName="category" class="ion-text-capitalize titulo" [(ngModel)]="details.category" ></ion-input>
           <ion-card-subtitle class="ion-text-capitalize titulo">{{ details.disposition }}</ion-card-subtitle>
           <ion-input class="ion-hide" formControlName="component" (ngModel)="0">0</ion-input>
           <ion-input class="ion-hide" formControlName="farming" (ngModel)="0">0</ion-input>
           <ion-input class="ion-hide" formControlName="extra" (ngModel)="0">0</ion-input>
-          <ion-button size="small" color="success" expand="block" (click)="alerta()">Add</ion-button>
+          <ion-button size="small" color="success" expand="block" (click)="alert()">Add</ion-button>
         </ion-card-header>
         <ion-card-content>
           <ion-card class="colorCard" *ngIf="details.components">
