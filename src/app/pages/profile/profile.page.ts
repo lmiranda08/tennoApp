@@ -23,33 +23,26 @@ export class ProfilePage implements OnInit {
   photo: string;
   uid: string;
   docId: string;
-  nombre: string;
+  name: string;
   image: any = null;
 
   constructor(private auth: AuthService,
               private afAuth: AngularFireAuth,
               private db: AngularFirestore,
-   /*            private storage: AngularFireStorage, */
               private loadingCtrl: LoadingController,
               private alertCtrl: AlertController) { }
 
   ngOnInit() {
-    this.infoUsuario();
+    this.infoUser();
   }
 
-  async infoUsuario(){
+  async infoUser(){
     this.photo = '../../../assets/img/userProfile.png';
     this.afAuth.onAuthStateChanged(user => {
       console.log(user);
       if (user) {
-        this.nombre = user.displayName;
+        this.name = user.displayName;
         this.email = user.email;
-/*         if ( this.photo.length < 5 ){
-          this.photo = '../../../assets/img/userProfile.png';
-        }else{
-          this.photo = user.photoURL;
-        }
-        console.log(this.photo); */
       }
     });
   }
@@ -59,38 +52,13 @@ export class ProfilePage implements OnInit {
     this.email = '';
     this.uid = '';
     this.docId = '';
-    this.nombre = '';
+    this.name = '';
     this.photo = '';
   }
 
   resetearPass( email: string ){
-    this.auth.enviarCorreo( this.email);
+    this.auth.sendEmail( this.email);
   }
 
- /* async updatePhoto() {
-    const capturedPhoto = await Camera.getPhoto({
-      resultType: CameraResultType.DataUrl,
-      quality: 100
-    });
-    this.dir = capturedPhoto.dataUrl;
-    this.afAuth.onAuthStateChanged( async usu => {
-      const storageRef = this.storage.storage.ref();
-      const loading = this.loadingCtrl.create();
-      (await loading).present();
-      const imageRef = storageRef.child(`ima/${usu.uid}.jpg`);
-      imageRef.putString(this.dir, 'data_url')
-      .then((snapshot) => {
-          imageRef.getDownloadURL().then( async dato =>{
-            (await loading).dismiss();
-            this.dir = '';
-            return  (await this.afAuth.currentUser).updateProfile({
-              photoURL: dato
-            });
-            this.infoUsuario();
-          });
-        });
-    });
-  } 
- */
 
 }

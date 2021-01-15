@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Buscador de Recursos</ion-title>
+    <ion-title>Search Resources</ion-title>
   </ion-toolbar>
   <ion-searchbar color="light" animated (ionChange)="onSearchChange($event)" debounce="400"></ion-searchbar>
 
@@ -17,7 +17,7 @@
         </strong>
       </ion-card-title>
       <ion-card-subtitle>
-        Probabilidad:  
+        Probability:  
         <strong>
           {{ item.rarity }} - {{ item.chance }}%
         </strong>
@@ -25,7 +25,7 @@
     </ion-card-header>
     <ion-card-content>
       <ion-card-subtitle>
-        Farmeo:
+        Farming:
         <strong>
           {{ item.place }}
         </strong> 

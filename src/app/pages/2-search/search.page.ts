@@ -10,20 +10,20 @@ import { ToastController } from '@ionic/angular';
 })
 export class SearchPage implements OnInit {
 
-  resultadoArr: any[] = [];
-  textoBuscar = '';
-  arma = [];
-  Data: any[] = [];
-  resultado: any;
-  resultadoPrimarias: any;
-  resultadoSecundarias: any;
-  resultadoMelee: any;
-  resultadoArch: any;
-  resultadoPets: any;
-  resultadoSentinels: any;
-  resultadoMods: any;
-  resultadoWarframe: any;
-  resultadoArcane: any;
+  resultArr: any[] = [];
+  searchText = '';
+  weapon = [];
+  data: any[] = [];
+  result: any;
+  resultPrimary: any;
+  resultSecondary: any;
+  resultMelee: any;
+  resultArch: any;
+  resultPets: any;
+  resultSentinels: any;
+  resultMods: any;
+  resultWarframe: any;
+  resultArcane: any;
 
   constructor(private db: FirebaseService,
               private firestore: AngularFirestore,
@@ -33,178 +33,121 @@ export class SearchPage implements OnInit {
   ngOnInit(){
     this.db.dbState().subscribe((res) => {
       if (res){
-        this.db.fetchPendientes().subscribe(item => {
-          this.Data = item;
+        this.db.fetchItems().subscribe(item => {
+          this.data = item;
         });
-        this.getCantidadTotal();
-        this.getCantidadPrimarias();
-        this.getCantidadSecundarias();
-        this.getCantidadMelee();
-        this.getCantidadWarframe();
-        this.getCantidadPets();
-        this.getCantidadSentinels();
-        this.getCantidadMods();
-        this.getCantidadArch();
-/*         this.getCantidadArcane(); */
+        this.getQ();
+        this.getQPrimary();
+        this.getQSecondary();
+        this.getQMelee();
+        this.getQWarframe();
+        this.getQPets();
+        this.getQSentinels();
+        this.getQMods();
+        this.getQArch();
       }
     });
-    console.log('mostrar pendientes', this.Data);
+    console.log('show items', this.data);
   }
 
-  actualizar(){
+  update(){
     this.db.dbState().subscribe((res) => {
       if (res){
-        this.db.fetchPendientes().subscribe(item => {
-          this.Data = item;
+        this.db.fetchItems().subscribe(item => {
+          this.data = item;
         });
-        this.getCantidadTotal();
-        this.getCantidadPrimarias();
-        this.getCantidadSecundarias();
-        this.getCantidadMelee();
-        this.getCantidadWarframe();
-        this.getCantidadPets();
-        this.getCantidadSentinels();
-        this.getCantidadMods();
-        this.getCantidadArch();
-/*         this.getCantidadArcane(); */
+        this.getQ();
+        this.getQPrimary();
+        this.getQSecondary();
+        this.getQMelee();
+        this.getQWarframe();
+        this.getQPets();
+        this.getQSentinels();
+        this.getQMods();
+        this.getQArch();
       }
     });
   }
 
-  getCantidadTotal(){
-    this.db.getTotalPendientes().then( res => {
-      this.resultado = res.rows.item(0).Total;
+  getQ(){
+    this.db.getQItems().then( res => {
+      this.result = res.rows.item(0).Total;
     });
   }
-  getCantidadPrimarias(){
-    this.db.getPendientesPrimarias().then( res => {
-      this.resultadoPrimarias = res.rows.item(0).TotalPrimaria;
+  getQPrimary(){
+    this.db.getQPrimary().then( res => {
+      this.resultPrimary = res.rows.item(0).TotalPrimary;
     });
   }
-  getCantidadSecundarias(){
-    this.db.getPendientesSecundarias().then( res => {
-      this.resultadoSecundarias = res.rows.item(0).TotalSecundaria;
+  getQSecondary(){
+    this.db.getQSecondary().then( res => {
+      this.resultSecondary = res.rows.item(0).TotalSecondary;
     });
   }
-  getCantidadMelee(){
-    this.db.getPendientesMelee().then( res => {
-      this.resultadoMelee = res.rows.item(0).TotalMelee;
+  getQMelee(){
+    this.db.getQMelee().then( res => {
+      this.resultMelee = res.rows.item(0).TotalMelee;
     });
   }
-  getCantidadWarframe(){
-    this.db.getPendientesWarframe().then( res => {
-      this.resultadoWarframe = res.rows.item(0).TotalWarframe;
+  getQWarframe(){
+    this.db.getQWarframe().then( res => {
+      this.resultWarframe = res.rows.item(0).TotalWarframe;
     });
   }
-  getCantidadPets(){
-    this.db.getPendientesPets().then( res => {
-      this.resultadoPets = res.rows.item(0).TotalCompañero;
+  getQPets(){
+    this.db.getQPets().then( res => {
+      this.resultPets = res.rows.item(0).TotalPets;
     });
   }
-  getCantidadSentinels(){
-    this.db.getPendientesSentinels().then( res => {
-      this.resultadoSentinels = res.rows.item(0).TotalSentinels;
+  getQSentinels(){
+    this.db.getQSentinels().then( res => {
+      this.resultSentinels = res.rows.item(0).TotalSentinels;
     });
   }
-  getCantidadMods(){
-    this.db.getPendientesMods().then( res => {
-      this.resultadoMods = res.rows.item(0).TotalMods;
+  getQMods(){
+    this.db.getQMods().then( res => {
+      this.resultMods = res.rows.item(0).TotalMods;
     });
   }
-  getCantidadArch(){
-    this.db.getPendientesArch().then( res => {
-      this.resultadoArch = res.rows.item(0).TotalArch;
+  getQArch(){
+    this.db.getQArch().then( res => {
+      this.resultArch = res.rows.item(0).TotalArch;
     });
   }
-/*   getCantidadArcane(){
-    this.db.getPendientesArcane().then( res => {
-      this.resultadoArcane = res.rows.item(0).TotalArcane;
-    });
-  } */
 
-  deletePendiente(id){
-    this.db.deletePendiente(id).then(async (res) => {
+  deleteItem(id){
+    this.db.deleteItem(id).then(async (res) => {
       const toast = await this.toast.create({
-        message: 'Pendiente eliminado',
+        message: 'Item deleted',
         duration: 2500
       });
       toast.present();
     });
-    this.actualizar();
+    this.update();
   }
 
-  updatePendiente(recordRow) {
+  updateItem(recordRow) {
     let record = {};
-    record['Nombre'] = recordRow.EditNombre;
-    record['Tipo'] = recordRow.EditTipo;
-    record['Componentes'] = recordRow.EditComponentes;
-    record['Farmeo'] = recordRow.EditFarmeo;
-    record['Otros'] = recordRow.EditOtros;
-    this.db.updatePendiente(recordRow.id, record);
+    record['name'] = recordRow.EditName;
+    record['category'] = recordRow.EditCategory;
+    record['component'] = recordRow.EditComponent;
+    record['farming'] = recordRow.EditFarming;
+    record['extra'] = recordRow.EditExtra;
+    this.db.updateItems(recordRow.id, record);
     recordRow.isEdit = false;
-    this.actualizar();
+    this.update();
   }
 
-  buscador( event ){
-    this.textoBuscar = event.detail.value;
+  search( event ){
+    this.searchText = event.detail.value;
   }
-
-/*   onSearchChange(e) {
-    const value = e.detail.value;
-    this.db.buscadorArmas(value).subscribe(result => {
-      this.arma = [result];
-    }, err => {
-      this.arma = [];
-    });
-  } */
 
   EditRecord(record) {
     record.isEdit = true;
-    record.EditNombre = record.Nombre;
-    record.EditTipo = record.Tipo;
-    record.EditComponentes = record.Componentes;
-    record.EditFarmeo = record.Farmeo;
-    record.EditOtros = record.Otros;
+    record.EditName = record.name;
+    record.EditCategory = record.category;
+    record.EditComponent = record.component;
+    record.EditFarming = record.farming;
+    record.EditExtra = record.extra;
   }
-
-/*   updatePendiente(){
-    this.db.updatePendiente(this.id, this.editForm.value)
-    .then( (res) => {
-      console.log(res)
-      this.router.navigate(['/home']);
-    })
-  } */
-
-
-/*   async mostrar(){
-    this.resultadoArr = [];
-    setTimeout(() => {
-      this.firebaseService.get().subscribe(data => {
-        this.resultadoArr = data;
-        console.log('resultadoArr' , this.resultadoArr);
-        return this.resultadoArr;
-      });
-    }, 1500);
-  }
- */
-
-
-/*   RemoveRecord(rowID) {
-    this.db.delete_todo(rowID);
-  }
- */
-
-/*   UpdateRecord(recordRow) {
-    let record = {};
-    record['Nombre'] = recordRow.EditNombre;
-    record['Tipo'] = recordRow.EditTipo;
-    record['Componentes'] = recordRow.EditComponentes;
-    record['Farmeo'] = recordRow.EditFarmeo;
-    record['Otros'] = recordRow.EditOtros;
-    this.db.update_todo(recordRow.id, record);
-    recordRow.isEdit = false;
-  } */
-
-
-
 }

@@ -10,15 +10,15 @@ import { AlertController, ToastController } from '@ionic/angular';
 })
 export class SearchWeaponPage implements OnInit {
   details: any = [];
-  dataArmas: any = [];
+  dataWeapon: any = [];
   constructor(public db: FirebaseService
     ) { }
 
   ngOnInit() {
     setTimeout (() => {
-      this.db.getTodasArmas()
+      this.db.getAllWeapons()
       .subscribe( data => {
-        this.dataArmas = data;
+        this.dataWeapon = data;
       });
    }, 1000);
   }
@@ -27,8 +27,8 @@ export class SearchWeaponPage implements OnInit {
     setTimeout (() => {
       const value = e.detail.value;
       if (value && value.trim() !== '' && value.length >= 2) {
-        this.db.buscadorArmas(value).subscribe(result => {
-          console.log('busqueda arma', result);
+        this.db.searchWeapon(value).subscribe(result => {
+          console.log('search weapon', result);
           this.details = result;
         }, err => {
           this.details = [];

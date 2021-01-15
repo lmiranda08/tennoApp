@@ -28,7 +28,7 @@ export class LoginPage implements OnInit {
   }
 
   resetearPass( email: string ){
-    this.fAuth.enviarCorreo(  this.user.email );
+    this.fAuth.sendEmail(  this.user.email );
   }
 
   

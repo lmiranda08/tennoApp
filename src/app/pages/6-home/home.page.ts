@@ -11,8 +11,8 @@ export class HomePage implements OnInit {
   fortuna = [];
   cetus = [];
   deimos = [];
-  fisura: any = [];
-  tierra = [];
+  fisure: any = [];
+  earth = [];
 
   tier: any = [];
   node: any = [];
@@ -23,28 +23,28 @@ export class HomePage implements OnInit {
   constructor(private firebaseService: FirebaseService) { }
 
   ngOnInit() {
-    this.getData();
-    this.getFisura();
+     this.update();
   }
 
-  async getData(){
-    this.firebaseService.getAlertas()
+  async getDB(){
+    this.firebaseService.getAlert()
     .subscribe( data => {
       this.fortuna = data['vallisCycle'];
       this.cetus = data['cetusCycle'];
       this.deimos = data['cambionCycle'];
-      this.tierra = data['earthCycle'];
+      this.earth = data['earthCycle'];
     });
   }
-  async actualizar(){
-    this.getData();
-    this.getFisura();
+
+  async update(){
+    this.getDB();
+    this.getFisure();
   }
 
-  async getFisura(){
-    this.firebaseService.getFisuras()
+  async getFisure(){
+    this.firebaseService.getFisure()
       .subscribe( data => {
-        this.fisura = data;
+        this.fisure = data;
       });
   }
 }

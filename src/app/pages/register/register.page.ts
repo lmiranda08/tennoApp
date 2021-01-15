@@ -17,12 +17,12 @@ export class RegisterPage implements OnInit {
 
   validation_messages = {
     'email': [
-      {type:'required', message: 'Correo es obligatorio'},
-      {type:'pattern', message: 'Por favor ingrese un correo válido'},
+      {type:'required', message: 'Email required'},
+      {type:'pattern', message: 'Please enter a valid email'},
     ],
     'password': [
-      {type: 'required', message: 'Contraseña es obligatoria'},
-      {type: 'minLength', message: 'Contraseña debe de mantener mínimo 6 carácteres'},
+      {type: 'required', message: 'Password required'},
+      {type: 'minLength', message: 'Password need 6 letters'},
     ]
   };
 
@@ -50,9 +50,9 @@ export class RegisterPage implements OnInit {
     this.authService.registerUser(value).then(
       res => {
         const alertOptions = {
-          header: 'Cuenta creada',
-          message: 'Correo: ' + value.email,
-          buttons: ['Aceptar']
+          header: 'User add',
+          message: 'Email: ' + value.email,
+          buttons: ['Ok']
         }
         this.showAlert(alertOptions);
         this.authService.login(value).then(() => {
@@ -60,16 +60,16 @@ export class RegisterPage implements OnInit {
         }).catch(() => {
           const alertOptions = {
             header: 'Error',
-            message: 'Error al iniciar sesión',
-            buttons: ['Aceptar']
+            message: 'Error',
+            buttons: ['Ok']
           };
           this.showAlert(alertOptions);
         });
       }, err => {
         const alertOptions = {
-          header: 'No se puede registrar',
+          header: 'Error can´t save user',
           message: err.message,
-          buttons: ['Aceptar']
+          buttons: ['Ok']
         };
         this.showAlert(alertOptions);
       }

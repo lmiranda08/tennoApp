@@ -4,19 +4,15 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <br>
-    <ion-title>Inicio</ion-title>
+    <ion-title>Home</ion-title>
     <br>
-
     <ion-buttons slot="end">
-      <ion-button (click)="actualizar()">
+      <ion-button (click)="update()">
           <ion-icon slot="icon-only" name="refresh-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
-
   </ion-toolbar>
-
 </ion-header>
-
 
 <ion-content>
   <!-- Cetus -->
@@ -70,26 +66,26 @@
       </p>
     </ion-card-content>
   </ion-card>
-   <!-- Tierra -->
+   <!-- Earth -->
    <ion-card>
     <img src="../../../assets/img/earth.png"/>
     <ion-card-content>
       <ion-card-title>
-        TIERRA     
+        Earth     
         <ion-chip>
           <ion-label outline color="success"> {{ tierra['state'] | uppercase }}</ion-label>
         </ion-chip>
       </ion-card-title>
       <p>
-        {{ tierra['timeLeft'] }}
+        {{ earth['timeLeft'] }}
       </p>
       <p>
-        {{ tierra['expiry'] | date:'short'}}
+        {{ earth['expiry'] | date:'short'}}
       </p>
     </ion-card-content>
   </ion-card>
 
-  <!-- Espacios -->
+  <!-- Space -->
   <br>
   <ion-card color="primary">
     <ion-card-content>
@@ -113,7 +109,7 @@
       </p>
     </ion-card-content>
   </ion-card>
-  <!-- Espacios -->
+  <!-- Earth -->
   <br>
   <ion-card color="primary">
     <ion-card-content>

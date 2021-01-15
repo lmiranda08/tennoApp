@@ -15,9 +15,7 @@ export class DetalleWarframePage implements OnInit {
   details: any;
   drops: any;
   todoForm: FormGroup;
-  tipoWarframe: any;
-
-  public todoList = [];
+  categoryWarframe: any;
   constructor(private firebaseService: FirebaseService,
               private route: ActivatedRoute,
               public fb: FormBuilder,
@@ -27,31 +25,31 @@ export class DetalleWarframePage implements OnInit {
 
   ngOnInit() {
     this.todoForm = this.fb.group({
-      Nombre: ['', [Validators.required]],
-      Tipo: ['', [Validators.required]],
-      Componentes: ['', [Validators.required]],
-      Farmeo: ['', [Validators.required]],
-      Otros: ['', [Validators.required]],
+      name: ['', [Validators.required]],
+      category: ['', [Validators.required]],
+      component: ['', [Validators.required]],
+      farming: ['', [Validators.required]],
+      extra: ['', [Validators.required]],
     });
-    this.tipoWarframe = 'Warframes';
+    this.categoryWarframe = 'Warframes';
     let index = this.route.snapshot.paramMap.get('index');
     index = index.toLowerCase();
-    this.firebaseService.buscadorWarframes(index)
+    this.firebaseService.searchWarframe(index)
       .subscribe(result => {
         this.details = result[0];
       }, err => {
       this.details = [];
     });
-    this.firebaseService.buscadorRecursos(index)
+    this.firebaseService.searchResources(index)
     .subscribe( data => {
       this.drops = data;
     });
   }
 
   storeData() {
-    this.firebaseService.addPendientes(
-      this.todoForm.value.Nombre,
-      this.todoForm.value.Tipo,
+    this.firebaseService.addItem(
+      this.todoForm.value.name,
+      this.todoForm.value.category,
       0,
       0,
       0
@@ -62,7 +60,7 @@ export class DetalleWarframePage implements OnInit {
 
   async alerta(){
     const toast = await this.toastController.create({
-      message: 'Objeto creado',
+      message: 'Item add',
       duration: 2500
     });
     this.storeData();

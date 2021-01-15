@@ -6,7 +6,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 
 
-export interface TodoData {
+export interface Item {
   id?: string;
   Nombre?: string;
   Tipo?: string;
@@ -23,9 +23,9 @@ export interface TodoData {
 
 export class AddPage implements OnInit {
   todoList = [];
-  todoData: TodoData;
+  item: Item;
   todoForm: FormGroup;
-  Data: any[] = [];
+  data: any[] = [];
 
   constructor(private db: FirebaseService,
               public fb: FormBuilder,
@@ -34,30 +34,28 @@ export class AddPage implements OnInit {
               public formBuilder: FormBuilder,
               private toast: ToastController,
    )
-  {
-    this.todoData = {} as TodoData;
-  }
+  {}
 
   ngOnInit() {
     this.db.dbState().subscribe((res) => {
       if (res){
-        this.db.fetchPendientes().subscribe(item => {
-          this.Data = item;
+        this.db.fetchPending().subscribe(item => {
+          this.data = item;
         });
       }
     });
     this.todoForm = this.fb.group({
-      Nombre: ['', [Validators.required]],
-      Tipo: ['', [Validators.required]],
-      Componentes: [''],
-      Farmeo: [''],
-      Otros: [''],
+      name: ['0', [Validators.required]],
+      category: ['0', [Validators.required]],
+      components: ['0'],
+      farming: ['0'],
+      extra: ['0'],
     });
 
   }
 
   storeData() {
-    this.db.addPendientes(
+    this.db.addItem(
       this.todoForm.value.Nombre,
       this.todoForm.value.Tipo,
       this.todoForm.value.Componentes,
@@ -68,26 +66,15 @@ export class AddPage implements OnInit {
     });
   }
 
-  CreateRecord() {
-/*     console.log(this.todoForm.value);
-    this.firebaseService.add(this.todoForm.value).then(resp => {
-      this.todoForm.reset();
-    })
-      .catch(error => {
-        console.log(error);
-      }); */
-  }
-
   async mostrarAlerta() {
     const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: 'Creación de Objeto',
+      header: 'Add Object',
       buttons: [
         {
-          text: 'Aceptar',
+          text: 'Ok',
           handler: () => {
             this.storeData();
-            this.presentToastWithOptions();
+            this.alert();
           }
         }
       ]
@@ -95,27 +82,9 @@ export class AddPage implements OnInit {
     await alert.present();
   }
 
-  async presentToastWithOptions() {
-    const toast = await this.toastController.create({
-      header: 'Notificación',
-      message: 'Objeto Creado',
-      position: 'bottom',
-      buttons: [
-      {
-          text: 'Hecho',
-          role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-          }
-        }
-      ]
-    });
-    toast.present();
-  }
-
-  async alerta(){
+  async alert(){
     const toast = await this.toast.create({
-      message: 'Objeto creado',
+      message: 'Object add',
       duration: 2500
     });
     this.storeData();

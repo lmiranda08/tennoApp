@@ -11,7 +11,6 @@ import { ToastController } from '@ionic/angular';
 })
 export class SearchItemPage implements OnInit {
   details: any = [];
-  private results: SearchItem2[];
   constructor(private db: FirebaseService,
               private firestore: AngularFirestore,
               private toast: ToastController) { }
@@ -24,8 +23,8 @@ export class SearchItemPage implements OnInit {
     setTimeout (() => {
       const value = e.detail.value;
       if (value && value.trim() !== '' && value.length >= 3) {
-        this.db.buscadorItems(value).subscribe(result => {
-          console.log('respuesta de resultado en search item page', result);
+        this.db.searchItems(value).subscribe(result => {
+          console.log('result search', result);
           this.details = result;
         }, err => {
           this.details = [];

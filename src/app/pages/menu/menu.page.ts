@@ -15,30 +15,30 @@ export class MenuPage implements OnInit {
   email: string;
   uid: string;
   docId: string;
-  nombre: string;
+  name: string;
   image: string;
 
-  direcciones = [
+  routes = [
     {
-      title: 'Inicio',
+      title: 'Home',
       url: '/menu/home',
       icon: 'home-outline',
       src: ''
     },
     {
-      title: 'Agregar',
+      title: 'Add',
       url: '/menu/add',
       icon: 'arrow-forward-circle-outline',
       src: ''
     },
     {
-      title: 'Buscar',
+      title: 'Search',
       url: '/menu/search',
       icon: 'arrow-forward-circle-outline',
       src: ''
     },
     {
-      title: 'Arcanos Pendientes',
+      title: 'Search Arcanes',
       url: '/menu/search-add-arcane',
       icon: 'arrow-forward-circle-outline',
       src: ''
@@ -50,13 +50,13 @@ export class MenuPage implements OnInit {
       src: ''
     },
     {
-      title: 'Armas',
+      title: 'Weapons',
       url: '/menu/search-weapon',
       icon: 'arrow-forward-circle-outline',
       src: ''
     },
     {
-      title: 'Arcanos',
+      title: 'Arcanes',
       url: '/menu/search-arcane',
       icon: 'arrow-forward-circle-outline',
       src: ''
@@ -68,7 +68,7 @@ export class MenuPage implements OnInit {
       src: ''
     },
     {
-      title: 'Recursos',
+      title: 'Resources',
       url: '/menu/resources',
       icon: 'arrow-forward-circle-outline',
       src: ''
@@ -80,13 +80,13 @@ export class MenuPage implements OnInit {
       src: ''
     },
     {
-      title: 'Ventas',
+      title: 'Sales',
       url: '/menu/sales',
       icon: 'arrow-forward-circle-outline',
       src: ''
     },
     {
-      title: 'Mercado',
+      title: 'Market',
       url: '/menu/modal',
       icon: 'arrow-forward-circle-outline',
       src: ''
@@ -100,7 +100,7 @@ export class MenuPage implements OnInit {
   ];
   profile = [
     {
-      title: 'Perfil',
+      title: 'Profile',
       url: '/menu/profile',
       icon: 'person-outline',
       src: ''
@@ -113,7 +113,7 @@ export class MenuPage implements OnInit {
               private router: Router,
               private afAuth: AngularFireAuth,
               private db: AngularFirestore ) {
-      this.infoUsuario();
+      this.infoUser();
       this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: RouterEvent) => {
@@ -123,14 +123,14 @@ export class MenuPage implements OnInit {
     }
 
   ngOnInit() {
-    this.infoUsuario();
+    this.infoUser();
   }
 
-  async infoUsuario(){
+  async infoUser(){
     this.afAuth.onAuthStateChanged(user => {
       this.image = '../../../assets/img/userProfile.png';
       if (user) {
-          this.nombre = user.displayName;
+          this.name = user.displayName;
           this.email = user.email;
       /*     if ( this.image.length < 2 ){ */
           this.image = '../../../assets/img/userProfile.png';
@@ -146,7 +146,7 @@ export class MenuPage implements OnInit {
     this.email = '';
     this.uid = '';
     this.docId = '';
-    this.nombre = '';
+    this.name = '';
 /*     this.photo = ''; */
   }
 

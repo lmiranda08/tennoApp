@@ -5,10 +5,7 @@
     </ion-buttons>
 
     <ion-item color="primary" lines="none">
-<!--       <ion-avatar slot="start">
-        <img src="../../../assets/img/LMSoftwareIconoBlanco.png">
-      </ion-avatar>  -->
-      <ion-title>Perfil</ion-title>
+      <ion-title>Profile</ion-title>
     </ion-item>
 
     <ion-buttons slot="end">
@@ -24,7 +21,6 @@
 <ion-content fullscreen="true" slot="fixed">
   <br>
     <ion-avatar class="avat" >
-<!--     <ion-avatar class="avat" (click)="updatePhoto()"> -->
       <img [src]="photo" alt="Profile Picture">
     </ion-avatar>
   <br>
@@ -44,7 +40,7 @@
         </ion-item-divider>
         <ion-item-divider >
           <ion-icon slot="start" name="mail-outline"></ion-icon>
-          <ion-button color="success" type="submit" fill="outline" (click)="resetearPass(email)" >Cambiar contraseña</ion-button>
+          <ion-button color="success" type="submit" fill="outline" (click)="resetearPass(email)" >Update password</ion-button>
         </ion-item-divider>
       </ion-list>
     </ion-card>

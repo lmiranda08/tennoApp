@@ -30,26 +30,26 @@
         <strong> {{ baro['location'] }} </strong> 
       </ion-card-subtitle>
       <ion-card-subtitle *ngIf="baro['active'] == true">
-        Disponible: SÍ
+        Available: YES
       </ion-card-subtitle>
       <ion-card-subtitle *ngIf="baro['active'] == false">
-        Disponible: NO
+        Available: NO
       </ion-card-subtitle>
       <p *ngIf="baro['active'] == false">
-        Inicio: {{ baro['startString']}}
+        Begin: {{ baro['startString']}}
       </p>
       <p>
-        Fin: {{ baro['endString']}}
+        Finish: {{ baro['endString']}}
       </p>
       <p>
-        Termina: {{ baro['expiry'] | date:'short'}}
+        Finish: {{ baro['expiry'] | date:'short'}}
       </p>
     </ion-card-content>
   </ion-card>
   <ion-card class="colorCard" *ngIf="baro['active'] == true">
     <ion-card-header>
       <ion-card-title>
-        Inventario
+        Inventory
       </ion-card-title>
     </ion-card-header>
     <ion-card-content>
@@ -60,8 +60,8 @@
           </ion-card-subtitle>
         </ion-card-header>
         <ion-card-content>
-          <ion-label class="drops">Ducados: {{ s.ducats | number}} </ion-label>
-          <ion-label class="drops">Créditos: {{ s.credits | number }} </ion-label>
+          <ion-label class="drops">Ducats: {{ s.ducats | number}} </ion-label>
+          <ion-label class="drops">Credits: {{ s.credits | number }} </ion-label>
         </ion-card-content>
       </ion-card>
     </ion-card-content>

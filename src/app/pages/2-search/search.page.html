@@ -5,57 +5,47 @@
     </ion-buttons>
 
     <ion-buttons slot="end">
-      <ion-button (click)="actualizar()">
+      <ion-button (click)="update()">
           <ion-icon slot="icon-only" name="refresh-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
-
-
-    <ion-title>Buscador</ion-title>
-
+    <ion-title>Search</ion-title>
   </ion-toolbar>
-
-  <ion-searchbar color="light" animated (ionChange)="buscador($event)" ></ion-searchbar>
-
-  
-
+  <ion-searchbar color="light" animated (ionChange)="search($event)" ></ion-searchbar>
 </ion-header>
 
 <ion-content class="ion-padding" >
   
   <ion-card class="colorCard">
     <ion-card-header>
-      <ion-card-title>Pendientes: <strong>{{ resultado }}</strong> </ion-card-title>
-      <ion-card-subtitle>Warframe:  <strong>{{ resultadoWarframe }} </strong> </ion-card-subtitle>
-      <ion-card-subtitle>Primarias:  <strong>{{ resultadoPrimarias }} </strong> </ion-card-subtitle>
-      <ion-card-subtitle>Secundarias:  <strong>{{ resultadoSecundarias }} </strong> </ion-card-subtitle>
-      <ion-card-subtitle>Melee:  <strong>{{ resultadoMelee }} </strong> </ion-card-subtitle>
-      <ion-card-subtitle>Compañeros:  <strong>{{ resultadoPets }} </strong> </ion-card-subtitle>
-      <ion-card-subtitle>Sentinelas:  <strong>{{ resultadoSentinels }} </strong> </ion-card-subtitle>
-      <ion-card-subtitle>Mods:  <strong>{{ resultadoMods }} </strong> </ion-card-subtitle>
-      <ion-card-subtitle>Arch:  <strong>{{ resultadoArch }} </strong> </ion-card-subtitle>
-<!--       <ion-card-subtitle>Arcanos:  <strong>{{ resultadoArcane }} </strong> </ion-card-subtitle> -->
+      <ion-card-title>Pending: <strong>{{ result }}</strong> </ion-card-title>
+      <ion-card-subtitle>Warframe:  <strong>{{ resultWarframe }} </strong> </ion-card-subtitle>
+      <ion-card-subtitle>Primary:  <strong>{{ resultPrimary }} </strong> </ion-card-subtitle>
+      <ion-card-subtitle>Secondary:  <strong>{{ resultSecondary }} </strong> </ion-card-subtitle>
+      <ion-card-subtitle>Melee:  <strong>{{ resultMelee }} </strong> </ion-card-subtitle>
+      <ion-card-subtitle>Pets:  <strong>{{ resultPets }} </strong> </ion-card-subtitle>
+      <ion-card-subtitle>Sentinels:  <strong>{{ resultSentinels }} </strong> </ion-card-subtitle>
+      <ion-card-subtitle>Mods:  <strong>{{ resultMods }} </strong> </ion-card-subtitle>
+      <ion-card-subtitle>Arch:  <strong>{{ resultArch }} </strong> </ion-card-subtitle>
     </ion-card-header>
   </ion-card>
 
-  <ion-card *ngFor="let item of Data | filtro: textoBuscar: 'Tipo'; let index = index" color="light">
+  <ion-card *ngFor="let item of Data | filtro: textoBuscar: 'category'; let index = index" color="light">
     <span *ngIf="!item.isEdit; else elseBlock">
       <ion-card-header>
-        <ion-card-title> {{item.Nombre}} </ion-card-title>
-        <ion-card-subtitle>Tipo: {{item.Tipo}}</ion-card-subtitle>
-        <ion-card-subtitle>Componentes: {{item.Componentes}}</ion-card-subtitle>
-        <ion-card-subtitle>Farmeo: {{item.Farmeo}}</ion-card-subtitle>
-        <ion-card-subtitle>Otros: {{item.Otros}}</ion-card-subtitle>
+        <ion-card-title> {{item.name}} </ion-card-title>
+        <ion-card-subtitle>Category: {{item.category}}</ion-card-subtitle>
+        <ion-card-subtitle>Component: {{item.component}}</ion-card-subtitle>
+        <ion-card-subtitle>Farming: {{item.farming}}</ion-card-subtitle>
+        <ion-card-subtitle>Extra: {{item.extra}}</ion-card-subtitle>
       </ion-card-header>
 
       <ion-card-content>
-
         <ion-button shape="round" color="secondary" size="small" (click)="EditRecord(item)">
           <ion-icon size="small" slot="icon-only" name="create"></ion-icon>
         </ion-button>
-        <ion-button shape="round" color="danger" size="small" (click)="deletePendiente(item.id)">
+        <ion-button shape="round" color="danger" size="small" (click)="deleteItem(item.id)">
           <ion-icon size="small" slot="icon-only" name="trash"></ion-icon>
-<!--           <label> {{ item.id }}</label> -->
         </ion-button>
 
       </ion-card-content>
@@ -66,18 +56,18 @@
           <ion-grid>
             <ion-row>
               <ion-col>
-                Editar
+                Edit
               </ion-col>
             </ion-row>
             <ion-row>
               <ion-col>
                 <ion-button fill="solid" color="medium" size="small" (click)="item.isEdit = false">
-                  Cerrar
+                  Close
                 </ion-button>
               </ion-col>
               <ion-col>
-                <ion-button fill="solid" color="success" size="small" (click)="updatePendiente(item)">
-                  Editar
+                <ion-button fill="solid" color="success" size="small" (click)="updateItem(item)">
+                  Edit
                 </ion-button>
               </ion-col>
             </ion-row>
@@ -86,34 +76,34 @@
       </ion-card-header>
       <ion-card-content>
         <ion-item color="light">
-          <ion-label><strong>Nombre</strong></ion-label>
-          <ion-input type="text" [(ngModel)]="item.EditNombre"></ion-input>
+          <ion-label><strong>Name</strong></ion-label>
+          <ion-input type="text" [(ngModel)]="item.EditName"></ion-input>
         </ion-item>
         <ion-item color="light">
-          <ion-label><strong>Tipo</strong></ion-label>
-          <ion-select type="text" [(ngModel)]="item.EditTipo" okText="Aceptar" cancelText="Cancelar">
+          <ion-label><strong>Category</strong></ion-label>
+          <ion-select type="text" [(ngModel)]="item.EditCategory" okText="Ok" cancelText="Cancel">
             <ion-select-option value="Warframes">Warframe</ion-select-option>
-            <ion-select-option value="Primary">Primaria</ion-select-option>
-            <ion-select-option value="Secundary">Secundaria</ion-select-option>
+            <ion-select-option value="Primary">Primary</ion-select-option>
+            <ion-select-option value="Secondary">Secondary</ion-select-option>
             <ion-select-option value="Melee">Melee</ion-select-option>
             <ion-select-option value="Arch">Arch</ion-select-option>
-            <ion-select-option value="Sentinels">Sentinela</ion-select-option>
-            <ion-select-option value="Pets">Compañeros</ion-select-option>
-            <ion-select-option value="Arcanes">Arcano</ion-select-option>
+            <ion-select-option value="Sentinels">Sentinels</ion-select-option>
+            <ion-select-option value="Pets">Pets</ion-select-option>
+            <ion-select-option value="Arcanes">Arcanes</ion-select-option>
             <ion-select-option value="Mods">Mods</ion-select-option>
           </ion-select>
         </ion-item>
         <ion-item color="light">
-          <ion-label><strong>Componentes</strong></ion-label>
-          <ion-input type="text" [(ngModel)]="item.EditComponentes"></ion-input>
+          <ion-label><strong>Component</strong></ion-label>
+          <ion-input type="text" [(ngModel)]="item.EditComponent"></ion-input>
         </ion-item>
         <ion-item color="light">
-          <ion-label><strong>Farmeo</strong></ion-label>
-          <ion-textarea type="text" [(ngModel)]="item.EditFarmeo"></ion-textarea>
+          <ion-label><strong>Farming</strong></ion-label>
+          <ion-textarea type="text" [(ngModel)]="item.EditFarming"></ion-textarea>
         </ion-item>
         <ion-item color="light">
-          <ion-label><strong>Otros</strong></ion-label>
-          <ion-textarea type="text" [(ngModel)]="item.EditOtros"></ion-textarea>
+          <ion-label><strong>Extra</strong></ion-label>
+          <ion-textarea type="text" [(ngModel)]="item.EditExtra"></ion-textarea>
         </ion-item>
       </ion-card-content>
     </ng-template>

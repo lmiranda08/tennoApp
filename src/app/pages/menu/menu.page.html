@@ -21,7 +21,7 @@
 
   <ion-content>
     <ion-list>
-      <ion-menu-toggle auto-hide="false" *ngFor="let item of direcciones">
+      <ion-menu-toggle auto-hide="false" *ngFor="let item of routes">
         <ion-item class="opciones" [routerLink]="item.url" routerDirection="root" routerLinkActive="active" lines="full">
           <ion-icon slot="start" [name]="item.icon" [src]="item.src"></ion-icon>
             {{ item.title }}
@@ -45,7 +45,7 @@
 
           <ion-item class="opciones2" lines="full">
             <div class="item-content">
-              Desarrollado por Luis Miranda
+              Luis Miranda
             </div>
           </ion-item>
         </ion-menu-toggle>

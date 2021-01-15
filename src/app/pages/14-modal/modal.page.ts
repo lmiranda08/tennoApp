@@ -15,7 +15,6 @@ export class ModalPage implements OnInit {
   public input: string = '';
   details: any;
   todoForm: FormGroup;
-  prueba: string;
   items: any[];
   slice: number = 20;
   constructor(private http: HttpClient,
@@ -29,8 +28,8 @@ export class ModalPage implements OnInit {
 
   ngOnInit() {
     this.todoForm = this.fb.group({
-      Nombre: [''],
-      Precio: ['']
+      name: [''],
+      balance: ['']
     });
   }  
 
@@ -38,7 +37,7 @@ export class ModalPage implements OnInit {
     const val = event.target.value;
     if (val && val.trim() != '' && val.length >= 3) {
       this.items = this.items.filter((item) => {
-        return (item.Name.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        return (item.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }else{
       this.initializeItems();
@@ -55,16 +54,16 @@ export class ModalPage implements OnInit {
   }
 
   storeData() {
-    this.db.addPendientesVentas(
-      this.todoForm.value.Nombre,
-      this.todoForm.value.Precio
+    this.db.addSales(
+      this.todoForm.value.name,
+      this.todoForm.value.balance
     ).then((res) => {
     });
   }
 
-  async alerta(){
+  async alert(){
     const toast = await this.toast.create({
-      message: 'Artículo creado',
+      message: 'Item add',
       duration: 2500
     });
     this.storeData();

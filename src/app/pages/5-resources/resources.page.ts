@@ -17,8 +17,8 @@ export class ResourcesPage implements OnInit {
     setTimeout (() => {
       const value = e.detail.value;
       if (value && value.trim() !== '' && value.length >= 3) {
-        this.firebaseService.buscadorRecursos(value).subscribe(result => {
-          console.log('busqueda recursos', result);
+        this.firebaseService.searchResources(value).subscribe(result => {
+          console.log('search resources', result);
           this.details = result;
         }, err => {
           this.details = [];

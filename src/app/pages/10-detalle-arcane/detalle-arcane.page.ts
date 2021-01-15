@@ -15,7 +15,7 @@ export class DetalleArcanePage implements OnInit {
 
   details: any;
   todoForm: FormGroup;
-  tipoArcane: any;
+  categoryArcane: any;
 
   constructor(private firebaseService: FirebaseService,
               private route: ActivatedRoute,
@@ -26,16 +26,16 @@ export class DetalleArcanePage implements OnInit {
 
   ngOnInit() {
     this.todoForm = this.fb.group({
-      Nombre: ['', [Validators.required]],
-      Tipo: ['', [Validators.required]],
-      Componentes: ['', [Validators.required]],
-      Farmeo: ['', [Validators.required]],
-      Otros: ['', [Validators.required]],
+      name: ['', [Validators.required]],
+      category: ['', [Validators.required]],
+      component: ['', [Validators.required]],
+      farming: ['', [Validators.required]],
+      extra: ['', [Validators.required]],
     });
-    this.tipoArcane = 'Arcanes';
+    this.categoryArcane = 'Arcanes';
     let index = this.route.snapshot.paramMap.get('index');
     index = index.toLowerCase();
-    this.firebaseService.buscadorArcanos(index)
+    this.firebaseService.searchArcane(index)
       .subscribe(result => {
         this.details = result[0];
       }, err => {
@@ -44,9 +44,9 @@ export class DetalleArcanePage implements OnInit {
   }
 
   storeData() {
-    this.firebaseService.addPendientes(
-      this.todoForm.value.Nombre,
-      this.todoForm.value.Tipo,
+    this.firebaseService.addItem(
+      this.todoForm.value.name,
+      this.todoForm.value.category,
       0,
       0,
       0
@@ -57,7 +57,7 @@ export class DetalleArcanePage implements OnInit {
 
   async alerta(){
     const toast = await this.toastController.create({
-      message: 'Objeto creado',
+      message: 'Item add',
       duration: 2500
     });
     this.storeData();

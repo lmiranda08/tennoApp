@@ -10,42 +10,40 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
-  
   <form [formGroup]="todoForm" (ngSubmit)="storeData()">
-
-    <ion-item >
-      <ion-label position="floating">Nombre</ion-label>
-      <ion-input formControlName="Nombre"></ion-input>
+    <ion-item ></ion-item>
+      <ion-label position="floating">Name</ion-label>
+      <ion-input formControlName="name"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label>Tipo</ion-label>
-      <ion-select formControlName="Tipo" value="Warframe" okText="Aceptar" cancelText="Cancelar">
+      <ion-select formControlName="category" value="Warframe" okText="Accept" cancelText="Cancel">
         <ion-select-option value="Warframes">Warframe</ion-select-option>
-        <ion-select-option value="Primary">Primaria</ion-select-option>
-        <ion-select-option value="Secundary">Secundaria</ion-select-option>
+        <ion-select-option value="Primary">Primary</ion-select-option>
+        <ion-select-option value="Secondary">Secondary</ion-select-option>
         <ion-select-option value="Melee">Melee</ion-select-option>
         <ion-select-option value="Arch">Arch</ion-select-option>
-        <ion-select-option value="Sentinels">Sentinela</ion-select-option>
-        <ion-select-option value="Pets">Compañeros</ion-select-option>
-        <ion-select-option value="Arcanes">Arcano</ion-select-option>
+        <ion-select-option value="Sentinels">Sentinels</ion-select-option>
+        <ion-select-option value="Pets">Pets</ion-select-option>
+        <ion-select-option value="Arcanes">Arcanes</ion-select-option>
         <ion-select-option value="Mods">Mods</ion-select-option>
       </ion-select>
     </ion-item>
 
     <ion-item >
-      <ion-label position="floating">Componentes</ion-label>
-      <ion-input formControlName="Componentes"></ion-input>
+      <ion-label position="floating">Components</ion-label>
+      <ion-input formControlName="components"></ion-input>
     </ion-item>
 
     <ion-item >
-      <ion-label position="floating">Farmeo</ion-label>
-      <ion-textarea formControlName="Farmeo"></ion-textarea>
+      <ion-label position="floating">Farming</ion-label>
+      <ion-textarea formControlName="farming"></ion-textarea>
     </ion-item>
 
     <ion-item >
-      <ion-label position="floating">Otros</ion-label>
-      <ion-textarea formControlName="Otros"></ion-textarea>
+      <ion-label position="floating">Extra</ion-label>
+      <ion-textarea formControlName="extra"></ion-textarea>
     </ion-item>
 
     <br>

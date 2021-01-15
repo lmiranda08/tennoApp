@@ -2,7 +2,7 @@
   <ion-toolbar color="primary">
 
     <ion-item color="primary" lines="none">
-      <ion-title>Registrarse</ion-title>
+      <ion-title>Register</ion-title>
     </ion-item>
 
   </ion-toolbar>
@@ -14,12 +14,12 @@
   <form  class="form" [formGroup]="validations_form" (ngSubmit)="tryRegister(validations_form.value)">
     <ion-list>
       <ion-item class="closed" class="borderForm">
-        <ion-label position="stacked" color="primary">Nombre</ion-label>
+        <ion-label position="stacked" color="primary">Name</ion-label>
         <ion-input type="text" spellcheck="false" autocapitalize="off" formControlName="name" required></ion-input>
       </ion-item>
 
       <ion-item class="closed" class="borderForm">
-        <ion-label position="stacked" color="primary">Correo</ion-label>
+        <ion-label position="stacked" color="primary">Email</ion-label>
         <ion-input type="text" spellcheck="false" autocapitalize="off" formControlName="email" required></ion-input>
       </ion-item>
 
@@ -32,7 +32,7 @@
       </div>
 
       <ion-item class="closed" class="borderForm">
-        <ion-label position="stacked" color="primary">Contraseña</ion-label>
+        <ion-label position="stacked" color="primary">Password</ion-label>
         <ion-input type="password" formControlName="password" required></ion-input>
       </ion-item>
       <div class="validation-errors">
@@ -47,7 +47,7 @@
 
     <ion-row>
       <ion-col>
-        <ion-button color="primary" type="submit" expand="block">Registrarse</ion-button>
+        <ion-button color="primary" type="submit" expand="block">Register</ion-button>
       </ion-col>
     </ion-row>
     <label class="error-message">{{errorMessage}}</label>
@@ -56,7 +56,7 @@
     <br>
     <ion-row>
       <ion-col>
-        <ion-button color="primary" expand="block" routerLink="/login">Volver</ion-button>
+        <ion-button color="primary" expand="block" routerLink="/login">Back</ion-button>
       </ion-col>
     </ion-row>
   </form>

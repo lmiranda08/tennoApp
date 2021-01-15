@@ -10,12 +10,12 @@ import { ToastController } from '@ionic/angular';
 })
 export class SearchAddArcanePage implements OnInit {
 
-  resultadoArr: any[] = [];
-  textoBuscar = '';
-  arma = [];
-  Data: any[] = [];
-  resultado: any;
-  resultadoArcane: any;
+  resultArr: any[] = [];
+  textSearch = '';
+  weapon = [];
+  data: any[] = [];
+  result: any;
+  resultAllArcane: any;
 
   constructor(private db: FirebaseService,
               private firestore: AngularFirestore,
@@ -26,65 +26,65 @@ export class SearchAddArcanePage implements OnInit {
     this.db.dbState().subscribe((res) => {
       if (res){
         this.db.fetchPendientesArcanos().subscribe(item => {
-          this.Data = item;
+          this.data = item;
         });
-        this.getCantidadArcane();
+        this.getQArcane();
       }
     });
-    console.log('mostrar pendientes', this.Data);
+    console.log('show pending', this.data);
   }
 
-  actualizar(){
+  update(){
     this.db.dbState().subscribe((res) => {
       if (res){
         this.db.fetchPendientesArcanos().subscribe(item => {
-          this.Data = item;
+          this.data = item;
         });
-        this.getCantidadArcane();
+        this.getQArcane();
       }
     });
   }
 
-  getCantidadArcane(){
-    this.db.getPendientesArcane().then( res => {
-      this.resultadoArcane = res.rows.item(0).TotalArcane;
+  getQArcane(){
+    this.db.getArcanes().then( res => {
+      this.resultAllArcane = res.rows.item(0).TotalArcane;
     });
   }
 
-  deletePendiente(id){
-    this.db.deletePendiente(id).then(async (res) => {
+  deleteItem(id){
+    this.db.deleteItem(id).then(async (res) => {
       const toast = await this.toast.create({
-        message: 'Pendiente eliminado',
+        message: 'Deleted',
         duration: 2500
       });
       toast.present();
     });
-    this.actualizar();
+    this.update();
   }
 
-  updatePendiente(recordRow) {
+  updateItem(recordRow) {
     let record = {};
-    record['Nombre'] = recordRow.EditNombre;
-    record['Tipo'] = recordRow.EditTipo;
-    record['Componentes'] = recordRow.EditComponentes;
-    record['Farmeo'] = recordRow.EditFarmeo;
-    record['Otros'] = recordRow.EditOtros;
-    this.db.updatePendiente(recordRow.id, record);
+    record['name'] = recordRow.EditName;
+    record['category'] = recordRow.EditCategory;
+    record['components'] = recordRow.EditComponent;
+    record['farming'] = recordRow.EditFarming;
+    record['extra'] = recordRow.EditExtra;
+    this.db.updateItems(recordRow.id, record);
     recordRow.isEdit = false;
-    this.actualizar();
+    this.update();
   }
 
-  buscador( event ){
-    this.textoBuscar = event.detail.value;
+  search( event ){
+    this.textSearch = event.detail.value;
   }
 
-  EditRecord(record) {
+  editRecord(record) {
     record.isEdit = true;
-    record.EditNombre = record.Nombre;
-    record.EditTipo = record.Tipo;
-    record.EditComponentes = record.Componentes;
-    record.EditFarmeo = record.Farmeo;
-    record.EditOtros = record.Otros;
+    record.EditName = record.name;
+    record.EditCategory = record.category;
+    record.EditComponent = record.component;
+    record.EditFarming = record.farming;
+    record.EditExtra = record.extra;
   }
 
 

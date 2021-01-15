@@ -10,7 +10,7 @@ import { ToastController } from '@ionic/angular';
 })
 export class SearchWarframePage implements OnInit {
   details: any = [];
-  dataWarframes: any = [];
+  dbWarframes: any = [];
 
   constructor(private db: FirebaseService,
               private firestore: AngularFirestore,
@@ -18,9 +18,9 @@ export class SearchWarframePage implements OnInit {
 
   ngOnInit() {
     setTimeout (() => {
-      this.db.getTodosWarframes()
+      this.db.getAllWarframe()
       .subscribe( data => {
-        this.dataWarframes = data;
+        this.dbWarframes = data;
       });
    }, 1000);
 
@@ -30,14 +30,12 @@ export class SearchWarframePage implements OnInit {
     setTimeout (() => {
       const value = e.detail.value;
       if (value && value.trim() !== '' && value.length >= 2) {
-        console.log('entra a buscador');
-        this.db.buscadorWarframes(value).subscribe(result => {
-          console.log('busqueda warframe', result);
+        this.db.searchWarframe(value).subscribe(result => {
+          console.log('search warframe', result);
           this.details = result;
         }, err => {
           this.details = [];
         });
-   
       }else{
         this.details = [];
       }

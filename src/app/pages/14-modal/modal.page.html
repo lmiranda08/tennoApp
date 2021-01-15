@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Mercado</ion-title>
+    <ion-title>Market</ion-title>
   </ion-toolbar>
   <ion-searchbar color="light" animated (ionChange)="filterItems($event)" debounce="400"></ion-searchbar>
 </ion-header>
@@ -15,15 +15,15 @@
         <ion-item button *ngFor="let item of items | slice:0:slice">
           <ion-row>
             <ion-col class="ion-align-self-start">
-              <ion-input formControlName="Nombre"> {{ item.Name }} </ion-input>
+              <ion-input formControlName="name"> {{ item.Name }} </ion-input>
             </ion-col>
             <ion-col class="ion-align-self-center">
               <strong>
-                <ion-input formControlName="Precio"> {{item.Platinum}} pl</ion-input>
+                <ion-input formControlName="balance"> {{item.Platinum}} pl</ion-input>
               </strong>
             </ion-col>
             <ion-col class="ion-align-self-end">
-              <ion-button expand="full" (click)="alerta()">
+              <ion-button expand="full" (click)="alert()">
                 <ion-icon slot="icon-only" name="add"></ion-icon>
             </ion-button>
             </ion-col>
@@ -32,7 +32,7 @@
       </ion-list>
   
     <ion-infinite-scroll (ionInfinite)="load(true, $event)">
-      <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando más items...">
+      <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Looding more items...">
       </ion-infinite-scroll-content>
     </ion-infinite-scroll>
 

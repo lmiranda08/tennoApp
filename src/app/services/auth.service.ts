@@ -106,7 +106,7 @@ export class AuthService {
     try {
       const validar = await this.afAuth.signInWithEmailAndPassword(email, password);
       if (validar) {
-        console.log('Successfully logged in!');
+        console.log('Successfully logged in');
         this.router.navigate(['menu/home']);
       }
     } catch (err) {
@@ -115,17 +115,17 @@ export class AuthService {
     }
   }
 
-  enviarCorreo(email: string) {
+  sendEmail(email: string) {
     this.afAuth.sendPasswordResetEmail(email)
       .then(data => {
         console.log(data);
-        this.presentToast('Correo de cambio de contraseña enviado',  'bottom', 1000);
+        this.presentToast('Email send',  'bottom', 1000);
         this.router.navigateByUrl('login');
       })
       .catch(err => {
         console.log(` failed ${err}`);
         this.error = err.message;
-        this.presentToast('Error al enviar correo de cambio de contraseña',  'bottom', 1000);
+        this.presentToast('Error',  'bottom', 1000);
       });
   }
 
@@ -143,8 +143,8 @@ export class AuthService {
       cssClass: 'my-custom-class',
       /* header: 'Error', */
       /* subHeader: 'Subtitle', */
-      message: 'Usuario o contraseña inválidos',
-      buttons: ['Aceptar']
+      message: 'User or password wrong',
+      buttons: ['Ok']
     });
 
     await alert.present();

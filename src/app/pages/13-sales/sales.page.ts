@@ -10,7 +10,7 @@ import { FirebaseService } from '../../services/firebase.service';
 })
 export class SalesPage implements OnInit {
   todoForm: FormGroup;
-  Data: any[] = [];
+  data: any[] = [];
 
   constructor(public fb: FormBuilder,
               private db: FirebaseService,
@@ -20,50 +20,50 @@ export class SalesPage implements OnInit {
   ngOnInit() {
     this.db.dbState().subscribe((res) => {
       if (res){
-        this.db.fetchPendientesVentas().subscribe(item => {
-          this.Data = item;
+        this.db.fetchSales().subscribe(item => {
+          this.data = item;
         });
       }
     });
     this.todoForm = this.fb.group({
-      Nombre: ['', [Validators.required]],
-      Precio: ['', [Validators.required]]
+      name: ['', [Validators.required]],
+      balance: ['', [Validators.required]]
     });
   }
 
   storeData() {
-    this.db.addPendientesVentas(
-      this.todoForm.value.Nombre,
-      this.todoForm.value.Precio
+    this.db.addSales(
+      this.todoForm.value.name,
+      this.todoForm.value.balance
     ).then((res) => {
       this.todoForm.reset();
     });
   }
 
-  deletePendiente(id){
-    this.db.deletePendienteVentas(id).then(async (res) => {
+  deleteSales(id){
+    this.db.deleteSales(id).then(async (res) => {
       const toast = await this.toast.create({
-        message: 'Artículo eliminado',
+        message: 'Item deleted',
         duration: 2500
       });
       toast.present();
     });
-    this.actualizar();
+    this.update();
   }
 
-  actualizar(){
+  update(){
     this.db.dbState().subscribe((res) => {
       if (res){
-        this.db.fetchPendientesVentas().subscribe(item => {
-          this.Data = item;
+        this.db.fetchSales().subscribe(item => {
+          this.data = item;
         });
       }
     });
   }
 
-  async alerta(){
+  async alert(){
     const toast = await this.toast.create({
-      message: 'Artículo creado',
+      message: 'Item add',
       duration: 2500
     });
     this.storeData();

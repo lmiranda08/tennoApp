@@ -13,7 +13,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 export class DetalleItemPage implements OnInit {
   details: any;
   componentsDrops: any;
-  tipoArcane: any;
   todoForm: FormGroup;
   constructor(private firebaseService: FirebaseService,
               private route: ActivatedRoute,
@@ -24,30 +23,30 @@ export class DetalleItemPage implements OnInit {
 
   ngOnInit() {
     this.todoForm = this.fb.group({
-      Nombre: ['', [Validators.required]],
-      Tipo: ['', [Validators.required]],
-      Componentes: ['', [Validators.required]],
-      Farmeo: ['', [Validators.required]],
-      Otros: ['', [Validators.required]],
+      name: ['', [Validators.required]],
+      category: ['', [Validators.required]],
+      component: ['', [Validators.required]],
+      farmimg: ['', [Validators.required]],
+      extra: ['', [Validators.required]],
     });
     let index = this.route.snapshot.paramMap.get('index');
     index = index.toLowerCase();
-    this.firebaseService.buscadorItems(index)
+    this.firebaseService.searchItems(index)
       .subscribe(result => {
         this.details = result[0];
       }, err => {
       this.details = [];
     });
-    this.firebaseService.buscadorRecursos(index)
+    this.firebaseService.searchResources(index)
     .subscribe( data => {
       this.componentsDrops = data;
     });
   }
 
   storeData() {
-    this.firebaseService.addPendientes(
-      this.todoForm.value.Nombre,
-      this.todoForm.value.Tipo,
+    this.firebaseService.addItem(
+      this.todoForm.value.name,
+      this.todoForm.value.category,
       0,
       0,
       0
@@ -58,7 +57,7 @@ export class DetalleItemPage implements OnInit {
 
   async alerta(){
     const toast = await this.toastController.create({
-      message: 'Objeto creado',
+      message: 'Item Add',
       duration: 2500
     });
     this.storeData();
